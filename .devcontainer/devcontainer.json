@@ -10,27 +10,46 @@
     // Configure properties specific to VS Code.
     "vscode": {
       "settings": {
+        "editor.formatOnSave": true,
+        "files.autoSave": "onFocusChange",
+        "editor.formatOnSaveTimeout": 5000,
+        "files.eol": "\n",
         "terminal.integrated.profiles.linux": {
           "zsh": {
             "path": "/usr/bin/zsh"
           }
         },
-        "terminal.integrated.defaultProfile.linux": "zsh"
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "files.associations": {
+          "*.html.erb": "erb"
+        },
+        "[erb]": {
+          "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+        },
+        "vscode-erb-beautify.useBundler": true,
+        "vscode-erb-beautify.bundlerPath": "example-app/bin/bundle",
+        "ruby.format": "rubocop",
+        "ruby.lint": {
+          "rubocop": true
+        }
       },
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "rebornix.Ruby",
         "wingrunr21.vscode-ruby",
+        "hridoy.rails-snippets",
         "dsznajder.es7-react-js-snippets",
         "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag",
+        "VisualStudioExptTeam.vscodeintellicode",
         "xabikos.JavaScriptSnippets",
         "vscode-icons-team.vscode-icons",
         "ms-azuretools.vscode-docker",
         "dbaeumer.vscode-eslint",
         "ecmel.vscode-html-css",
         "oderwat.indent-rainbow",
-        "esbenp.prettier-vscode",
-        "TabNine.tabnine-vscode"
+        "TabNine.tabnine-vscode",
+        "aliariff.vscode-erb-beautify"
       ]
     }
   },
@@ -39,7 +58,7 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "ruby --version",
+  "postCreateCommand": "cd example-app && bundle install",
 
   // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "features": {
